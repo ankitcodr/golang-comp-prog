@@ -6,6 +6,7 @@ import (
 	. "com/ankitcodr/leetcode"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"fmt"
 )
 
 func TestLeetcode(t *testing.T) {
@@ -31,7 +32,6 @@ var _ = Describe("Leetcode", func() {
 	})
 
 	Context("20_Valid_Parentheses", func() {
-
 		It("should test stack Push API", func() {
 			input := "Ankit"
 			output := ""
@@ -52,6 +52,73 @@ var _ = Describe("Leetcode", func() {
 			result := []bool{true, true, false, false, true}
 			for i := 0; i < len(input); i++ {
 				Expect(IsValidSolution(input[i])).To(Equal(result[i]))
+			}
+		})
+	})
+
+	Context("7 Reverse Integer", func() {
+		It("should pass for default input", func() {
+			input := []int{123, -123, 120}
+			output := []int{321, -321, 21}
+			for i := 0; i < len(input); i++ {
+				Expect(ReverseSolution(input[i])).To(Equal(output[i]))
+			}
+		})
+	})
+
+	Context("26. Remove Duplicates from Sorted Array", func() {
+		It("should pass for default input", func() {
+			input := [][]int{{}, {1}, {1, 1, 2, 2}, {1, 2, 3}, {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}}
+			output := [][]int{{}, {1}, {1, 2}, {1, 2, 3}, {0, 1, 2, 3, 4}}
+			for i := 0; i < len(input); i++ {
+				Expect(RemoveDuplicatesSolution(input[i])).To(Equal(output[i]))
+			}
+		})
+	})
+
+	Context("27. Remove Element", func() {
+		It("should pass for default input", func() {
+			input := [][]int{{0}, {0, 0, 1, 2}, {3, 2, 2, 3}, {3, 2, 4, 2, 4, 3}}
+			inputVal := []int{0, 0, 3, 4}
+			output := [][]int{{}, {1, 2}, {2, 2}, {3, 2, 2, 3}}
+			for i := 0; i < len(input); i++ {
+				Expect(RemoveElementSolution(input[i], inputVal[i])).To(Equal(output[i]))
+			}
+		})
+	})
+
+	Context("83. Remove Duplicates from Sorted List", func() {
+		It("should pass for default input", func() {
+			input := ListNode{1, &ListNode{2, &ListNode{3, nil}}}
+			output := &ListNode{1, &ListNode{2, &ListNode{3, nil}}}
+			result := DeleteDuplicatesSolution(&input)
+			for output != nil {
+				Expect(result.Val).To(Equal(output.Val))
+				result = result.Next
+				output = output.Next
+			}
+		})
+
+		It("should remove repeated elements", func() {
+			input := ListNode{1, &ListNode{1, &ListNode{3, nil}}}
+			output := &ListNode{1, &ListNode{3, nil}}
+			result := DeleteDuplicatesSolution(&input)
+			for output != nil {
+				fmt.Println(result.Val)
+				Expect(result.Val).To(Equal(output.Val))
+				result = result.Next
+				output = output.Next
+			}
+		})
+
+		It("should remove repeated elements which are present twice", func() {
+			input := ListNode{1, &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{3, nil}}}}}
+			output := &ListNode{1, &ListNode{2, &ListNode{3, nil}}}
+			result := DeleteDuplicatesSolution(&input)
+			for output != nil {
+				Expect(result.Val).To(Equal(output.Val))
+				result = result.Next
+				output = output.Next
 			}
 		})
 	})
