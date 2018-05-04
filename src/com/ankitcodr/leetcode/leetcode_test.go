@@ -6,7 +6,6 @@ import (
 	. "com/ankitcodr/leetcode"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"fmt"
 )
 
 func TestLeetcode(t *testing.T) {
@@ -104,7 +103,6 @@ var _ = Describe("Leetcode", func() {
 			output := &ListNode{1, &ListNode{3, nil}}
 			result := DeleteDuplicatesSolution(&input)
 			for output != nil {
-				fmt.Println(result.Val)
 				Expect(result.Val).To(Equal(output.Val))
 				result = result.Next
 				output = output.Next
@@ -120,6 +118,72 @@ var _ = Describe("Leetcode", func() {
 				result = result.Next
 				output = output.Next
 			}
+		})
+	})
+
+	Context("561. Array Partition I", func() {
+		It("should pass for default input", func() {
+			input := []int{1, 4, 3, 2}
+			result := 4
+			Expect(ArrayPairSum(input)).To(Equal(result))
+		})
+	})
+
+	Context("766. Toeplitz Matrix", func() {
+		It("should pass for default input", func() {
+			input := [][]int{{1, 2, 3, 4}, {5, 1, 2, 3}, {9, 5, 1, 2}}
+			result := true
+			Expect(IsToeplitzMatrix(input)).To(Equal(result))
+			input = [][]int{{1, 2}, {2, 2}}
+			result = false
+			Expect(IsToeplitzMatrix(input)).To(Equal(result))
+		})
+	})
+
+	Context("566. Reshape the Matrix", func() {
+		It("should pass for default input", func() {
+			input := [][]int{{1, 2}, {3, 4}}
+			result := [][]int{{1, 2, 3, 4}}
+			Expect(MatrixReshape(input, 1, 4)).To(Equal(result))
+			input = [][]int{{1, 2}, {3, 4}}
+			result = [][]int{{1, 2}, {3, 4}}
+			Expect(MatrixReshape(input, 2, 4)).To(Equal(result))
+		})
+	})
+
+	Context("566. Reshape the Matrix", func() {
+		It("should pass for default input", func() {
+			input := [][]int{{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+				{0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+				{0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+				{0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+				{0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}}
+			result := 6
+			Expect(MaxAreaOfIsland(input)).To(Equal(result))
+			input = [][]int{{0, 0, 0, 0, 0, 0, 0, 0}}
+			result = 0
+			Expect(MaxAreaOfIsland(input)).To(Equal(result))
+			input = [][]int{{1, 1, 0, 0, 0}, {1, 1, 0, 0, 0}, {0, 0, 0, 1, 1}, {0, 0, 0, 1, 1}}
+			result = 4
+			Expect(MaxAreaOfIsland(input)).To(Equal(result))
+
+		})
+	})
+
+	Context("665. Non-decreasing Array", func() {
+		It("should pass for default input", func() {
+			input := []int{4, 2, 3}
+			result := true
+			Expect(CheckPossibility(input)).To(Equal(result))
+			input = []int{4, 2, 1}
+			result = false
+			Expect(CheckPossibility(input)).To(Equal(result))
+			input = []int{2, 4, 3, 5}
+			result = true
+			Expect(CheckPossibility(input)).To(Equal(result))
 		})
 	})
 })
